@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Awesome Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sunscreen Today</h1>
+    <form id="myForm" method="post">
+
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter latitude...">
+      </div>
+
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Enter longitude...">
+      </div>
+
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" name="date">
+      </div>
+    
+
+
+      <div class="form-group">
+        <h1>STATS</h1>
+      </div>
+
+      <button type="submit" class="btn btn-primary" formaction="/get-result">Submit</button>
+
+      <br>
+
+      <%  if (locals.length) {%>
+
+      <%  for (let i = 0; i < length; i++) { %>
+
+        <br>
+
+        <% console.log(data[i])%>
+        <% console.log(data[i].uv_time)%>
+        <% const timeString = data[i].uv_time.substr(data[i].uv_time.indexOf('T') + 1, 5);%>
+         <% console.log(timeString)%>
+
+        <div class="form-group">
+          <h2 style="color: crimson"> Time: <%= timeString %> </h2>
+          <h5 style="color: blueviolet;"> Ultraviolet: <%=  data[i].uv %> </h5>
+          
+          <% if ( data[i].uv > 0 && data[i].uv <= 2 ) {%>
+
+            <h5> You can safely enjoy being outside! </h5>
+
+          <% } else if (data[i].uv > 2 && data[i].uv <= 7 ) {%>
+
+            <h5>  Seek shade during midday hours! Slip on a shirt, slop on sunscreen and slap on hat! </h5>
+            
+            
+          <%  } else if (data[i].uv > 7 && data[i].uv <= 8 ) {%>
+
+            <h5>  Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen and hat are a must!</h5>
+            
+            <%  }%>
+
+
+        
+
+
+          <br>
+        </div>
+
+      
+        <% } %>
+
+      <%  }%>
+
+       
+        
+      
+      
+
+
+      
+     
+
+
+
+
+
+      
+
+
+      
+
+    </form>
+  </div>
+</body>
+</html>
+
